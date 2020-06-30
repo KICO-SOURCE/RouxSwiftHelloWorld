@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A64DBD524A8965A0090A5E3 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A64DBCF24A8965A0090A5E3 /* GCDAsyncUdpSocket.m */; };
+		1A64DBD624A8965A0090A5E3 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A64DBD024A8965A0090A5E3 /* GCDAsyncSocket.m */; };
+		1A64DBDA24A896690090A5E3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A64DBD924A896690090A5E3 /* CFNetwork.framework */; };
+		1A64DBDC24A896710090A5E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A64DBDB24A896710090A5E3 /* Foundation.framework */; };
+		1A64DBDE24A896770090A5E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A64DBDD24A896760090A5E3 /* Security.framework */; };
+		1A64DBE224A8F4BF0090A5E3 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64DBE124A8F4BF0090A5E3 /* AlertController.swift */; };
 		A54252ED24898D6700162230 /* RouxSwiftHelloWorldUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54252EC24898D6700162230 /* RouxSwiftHelloWorldUITests.swift */; };
 		A5AEB4AB246AF08E00E1F681 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEB4AA246AF08E00E1F681 /* AppDelegate.swift */; };
 		A5AEB4AD246AF08E00E1F681 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEB4AC246AF08E00E1F681 /* SceneDelegate.swift */; };
@@ -44,6 +50,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A64DBCF24A8965A0090A5E3 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		1A64DBD024A8965A0090A5E3 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		1A64DBD124A8965A0090A5E3 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		1A64DBD224A8965A0090A5E3 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		1A64DBD924A896690090A5E3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1A64DBDB24A896710090A5E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1A64DBDD24A896760090A5E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1A64DBDF24A8979C0090A5E3 /* RouxSwiftHelloWorld-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RouxSwiftHelloWorld-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		1A64DBE124A8F4BF0090A5E3 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		A54252EA24898D6700162230 /* RouxSwiftHelloWorldUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouxSwiftHelloWorldUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A54252EC24898D6700162230 /* RouxSwiftHelloWorldUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouxSwiftHelloWorldUITests.swift; sourceTree = "<group>"; };
 		A54252EE24898D6700162230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,13 +86,60 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A64DBDA24A896690090A5E3 /* CFNetwork.framework in Frameworks */,
+				1A64DBDE24A896770090A5E3 /* Security.framework in Frameworks */,
 				A5AEB4C4246AF1CA00E1F681 /* ScandyCore.framework in Frameworks */,
+				1A64DBDC24A896710090A5E3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A64DBCC24A8965A0090A5E3 /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				1A64DBD124A8965A0090A5E3 /* GCDAsyncUdpSocket.h */,
+				1A64DBCF24A8965A0090A5E3 /* GCDAsyncUdpSocket.m */,
+				1A64DBD224A8965A0090A5E3 /* GCDAsyncSocket.h */,
+				1A64DBD024A8965A0090A5E3 /* GCDAsyncSocket.m */,
+			);
+			path = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		1A64DBE024A8F4AA0090A5E3 /* AlertController */ = {
+			isa = PBXGroup;
+			children = (
+				1A64DBE124A8F4BF0090A5E3 /* AlertController.swift */,
+			);
+			path = AlertController;
+			sourceTree = "<group>";
+		};
+		1AC92BCE24A9B1D20072A0E3 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A5AEB4AA246AF08E00E1F681 /* AppDelegate.swift */,
+				A5AEB4AC246AF08E00E1F681 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		1AC92BCF24A9B1E50072A0E3 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				1A64DBCC24A8965A0090A5E3 /* CocoaAsyncSocket */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		1AC92BD024A9B1F40072A0E3 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A5AEB4AE246AF08E00E1F681 /* ViewController.swift */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
 		A54252EB24898D6700162230 /* RouxSwiftHelloWorldUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +152,7 @@
 		A5AEB49E246AF08E00E1F681 = {
 			isa = PBXGroup;
 			children = (
+				1A64DBDF24A8979C0090A5E3 /* RouxSwiftHelloWorld-Bridging-Header.h */,
 				A5AEB4A9246AF08E00E1F681 /* RouxSwiftHelloWorld */,
 				A54252EB24898D6700162230 /* RouxSwiftHelloWorldUITests */,
 				A5AEB4A8246AF08E00E1F681 /* Products */,
@@ -109,9 +172,10 @@
 		A5AEB4A9246AF08E00E1F681 /* RouxSwiftHelloWorld */ = {
 			isa = PBXGroup;
 			children = (
-				A5AEB4AA246AF08E00E1F681 /* AppDelegate.swift */,
-				A5AEB4AC246AF08E00E1F681 /* SceneDelegate.swift */,
-				A5AEB4AE246AF08E00E1F681 /* ViewController.swift */,
+				1AC92BCF24A9B1E50072A0E3 /* Helper */,
+				1AC92BCE24A9B1D20072A0E3 /* AppDelegate */,
+				1A64DBE024A8F4AA0090A5E3 /* AlertController */,
+				1AC92BD024A9B1F40072A0E3 /* MainViewController */,
 				A5AEB4B0246AF08E00E1F681 /* Main.storyboard */,
 				A5AEB4B3246AF09000E1F681 /* Assets.xcassets */,
 				A5AEB4B5246AF09000E1F681 /* LaunchScreen.storyboard */,
@@ -124,6 +188,9 @@
 		A5AEB4BE246AF0F000E1F681 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A64DBDD24A896760090A5E3 /* Security.framework */,
+				1A64DBDB24A896710090A5E3 /* Foundation.framework */,
+				1A64DBD924A896690090A5E3 /* CFNetwork.framework */,
 				A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */,
 			);
 			name = Frameworks;
@@ -136,6 +203,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A54252F324898D6700162230 /* Build configuration list for PBXNativeTarget "RouxSwiftHelloWorldUITests" */;
 			buildPhases = (
+				B3B134D2CE2D2413645E5727 /* [CP] Check Pods Manifest.lock */,
 				A54252E624898D6700162230 /* Sources */,
 				A54252E724898D6700162230 /* Frameworks */,
 				A54252E824898D6700162230 /* Resources */,
@@ -228,6 +296,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B3B134D2CE2D2413645E5727 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RouxSwiftHelloWorld-RouxSwiftHelloWorldUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A54252E624898D6700162230 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -241,8 +334,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A64DBD524A8965A0090A5E3 /* GCDAsyncUdpSocket.m in Sources */,
+				1A64DBD624A8965A0090A5E3 /* GCDAsyncSocket.m in Sources */,
 				A5AEB4AF246AF08E00E1F681 /* ViewController.swift in Sources */,
 				A5AEB4AB246AF08E00E1F681 /* AppDelegate.swift in Sources */,
+				1A64DBE224A8F4BF0090A5E3 /* AlertController.swift in Sources */,
 				A5AEB4AD246AF08E00E1F681 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +535,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8777VFSA3J;
+				DEVELOPMENT_TEAM = B5Y5BFV894;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Frameworks";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -453,6 +549,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = co.scandy.RouxSwiftHelloWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Frameworks/ScandyCore.framework/Headers/ScandyCore-Bridging-Header.h";
@@ -468,7 +565,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8777VFSA3J;
+				DEVELOPMENT_TEAM = B5Y5BFV894;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Frameworks";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Frameworks/ScandyCore.framework/Headers/include/";
 				INFOPLIST_FILE = RouxSwiftHelloWorld/Info.plist;
@@ -477,6 +574,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = co.scandy.RouxSwiftHelloWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Frameworks/ScandyCore.framework/Headers/ScandyCore-Bridging-Header.h";
