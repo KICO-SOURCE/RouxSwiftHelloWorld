@@ -80,11 +80,13 @@ extension AlertController {
         let jsonStr = convertDictionaryToString(dict: headDict as [String: AnyObject])
         if let lengthData = jsonStr.data(using: String.Encoding.utf8) {
             
-            mData = NSMutableData.init(data: lengthData)
+//            mData = NSMutableData.init(data: lengthData)
+            mData = NSMutableData()
             mData.append(GCDAsyncSocket.crlfData())
             mData.append(data)
             
             print("mData.length \(mData.length)")
+            print("Data.length \(data.count)")
             socket?.write(mData as Data, withTimeout: -1, tag: 0)
         }
     }
@@ -116,10 +118,10 @@ extension AlertController {
                     do {
                         let data = try Data(contentsOf: fileURL)
                         let data_Base64str = data.base64EncodedString()
-                        self.imageDict["ply"] = data_Base64str
+                        self.imageDict["stl"] = data_Base64str
                         self.test7str = self.convertDictionaryToString(dict: self.imageDict as [String: Any])
                         self.test7data = self.test7str.data(using: String.Encoding.utf8)
-                        self.sendData(data: self.test7data, type: "ply")
+                        self.sendData(data: self.test7data, type: "stl")
                     } catch {
                         print("No Data Found")
                     }

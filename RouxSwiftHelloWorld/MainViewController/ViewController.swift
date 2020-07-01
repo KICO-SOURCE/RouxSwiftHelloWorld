@@ -83,7 +83,7 @@ extension ViewController {
         formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
         let id = formatter.string(from: date)
         // NOTE: You can change this to: obj, ply, or stl
-        let filetype = "ply"
+        let filetype = "stl"
         let filename = "rouxiosexample_\(id).\(filetype)"
         let documentspath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let documentsURL = URL(fileURLWithPath: documentspath)
