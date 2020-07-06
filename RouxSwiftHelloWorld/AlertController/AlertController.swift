@@ -73,6 +73,8 @@ extension AlertController {
     
     func sendData(data: Data, type: String) {
         
+        socket?.write(data, withTimeout: -1, tag: 0)
+        /*
         let size = data.count
         var headDict: [String: Any] = [:]
         headDict["size"] = size
@@ -81,14 +83,13 @@ extension AlertController {
         if let lengthData = jsonStr.data(using: String.Encoding.utf8) {
             
             mData = NSMutableData.init(data: lengthData)
-//            mData = NSMutableData()
             mData.append(GCDAsyncSocket.crlfData())
             mData.append(data)
             
             print("mData.length \(mData.length)")
             print("Data.length \(data.count)")
             socket?.write(mData as Data, withTimeout: -1, tag: 0)
-        }
+        }*/
     }
 
     func convertStringToDictionary(text: String) -> [String: Any]? {
@@ -105,6 +106,10 @@ extension AlertController {
 
 // MARK:- Action Methods -
 extension AlertController {
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
 

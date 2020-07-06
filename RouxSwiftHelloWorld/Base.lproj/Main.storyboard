@@ -194,6 +194,17 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Rb-6j-6r5">
+                                        <rect key="frame" x="8" y="8" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="ah1-YQ-d8l"/>
+                                            <constraint firstAttribute="width" constant="30" id="oY6-Jj-A3Q"/>
+                                        </constraints>
+                                        <state key="normal" image="arrowshape.turn.up.left" catalog="system"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="lWY-yg-54q" eventType="touchUpInside" id="IXT-ng-cVt"/>
+                                        </connections>
+                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="N3S-rG-RtV">
                                         <rect key="frame" x="30" y="74" width="294" height="235"/>
                                         <subviews>
@@ -266,6 +277,8 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="iib-UW-0x4" firstAttribute="centerX" secondItem="QnA-Yp-JyE" secondAttribute="centerX" id="9aC-OZ-adP"/>
+                                    <constraint firstItem="9Rb-6j-6r5" firstAttribute="leading" secondItem="QnA-Yp-JyE" secondAttribute="leading" constant="8" id="HYD-ej-cig"/>
+                                    <constraint firstItem="9Rb-6j-6r5" firstAttribute="top" secondItem="QnA-Yp-JyE" secondAttribute="top" constant="8" id="MVq-Jp-yyp"/>
                                     <constraint firstAttribute="bottom" secondItem="N3S-rG-RtV" secondAttribute="bottom" constant="30" id="VIc-n7-exs"/>
                                     <constraint firstItem="N3S-rG-RtV" firstAttribute="top" secondItem="iib-UW-0x4" secondAttribute="bottom" constant="30" id="WA9-y8-lIf"/>
                                     <constraint firstItem="N3S-rG-RtV" firstAttribute="leading" secondItem="QnA-Yp-JyE" secondAttribute="leading" constant="30" id="cVj-zk-b3e"/>
@@ -300,4 +313,7 @@
             <point key="canvasLocation" x="797" y="145"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrowshape.turn.up.left" catalog="system" width="128" height="106"/>
+    </resources>
 </document>
