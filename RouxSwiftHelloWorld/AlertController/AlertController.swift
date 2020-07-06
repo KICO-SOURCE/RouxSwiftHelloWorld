@@ -80,8 +80,8 @@ extension AlertController {
         let jsonStr = convertDictionaryToString(dict: headDict as [String: AnyObject])
         if let lengthData = jsonStr.data(using: String.Encoding.utf8) {
             
-//            mData = NSMutableData.init(data: lengthData)
-            mData = NSMutableData()
+            mData = NSMutableData.init(data: lengthData)
+//            mData = NSMutableData()
             mData.append(GCDAsyncSocket.crlfData())
             mData.append(data)
             
