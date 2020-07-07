@@ -13,6 +13,7 @@
 		1A64DBDC24A896710090A5E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A64DBDB24A896710090A5E3 /* Foundation.framework */; };
 		1A64DBDE24A896770090A5E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A64DBDD24A896760090A5E3 /* Security.framework */; };
 		1A64DBE224A8F4BF0090A5E3 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64DBE124A8F4BF0090A5E3 /* AlertController.swift */; };
+		3F1D118D24B42984005040DA /* ScandyCoreLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D118C24B42983005040DA /* ScandyCoreLicense.txt */; };
 		A54252ED24898D6700162230 /* RouxSwiftHelloWorldUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54252EC24898D6700162230 /* RouxSwiftHelloWorldUITests.swift */; };
 		A5AEB4AB246AF08E00E1F681 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEB4AA246AF08E00E1F681 /* AppDelegate.swift */; };
 		A5AEB4AD246AF08E00E1F681 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEB4AC246AF08E00E1F681 /* SceneDelegate.swift */; };
@@ -22,7 +23,6 @@
 		A5AEB4B7246AF09000E1F681 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5AEB4B5246AF09000E1F681 /* LaunchScreen.storyboard */; };
 		A5AEB4C4246AF1CA00E1F681 /* ScandyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */; };
 		A5AEB4C5246AF1CA00E1F681 /* ScandyCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E2BAD0352472FDF20040BF86 /* ScandyCoreLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = A5AEB4D0246B256500E1F681 /* ScandyCoreLicense.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +59,7 @@
 		1A64DBDD24A896760090A5E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1A64DBDF24A8979C0090A5E3 /* RouxSwiftHelloWorld-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RouxSwiftHelloWorld-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		1A64DBE124A8F4BF0090A5E3 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		3F1D118C24B42983005040DA /* ScandyCoreLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ScandyCoreLicense.txt; path = ../../Downloads/RouxSwiftHelloWorld/RouxSwiftHelloWorld/ScandyCoreLicense.txt; sourceTree = "<group>"; };
 		A54252EA24898D6700162230 /* RouxSwiftHelloWorldUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouxSwiftHelloWorldUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A54252EC24898D6700162230 /* RouxSwiftHelloWorldUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouxSwiftHelloWorldUITests.swift; sourceTree = "<group>"; };
 		A54252EE24898D6700162230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		A5AEB4B6246AF09000E1F681 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5AEB4B8246AF09000E1F681 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScandyCore.framework; path = Frameworks/ScandyCore.framework; sourceTree = "<group>"; };
-		A5AEB4D0246B256500E1F681 /* ScandyCoreLicense.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScandyCoreLicense.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +180,7 @@
 				A5AEB4B3246AF09000E1F681 /* Assets.xcassets */,
 				A5AEB4B5246AF09000E1F681 /* LaunchScreen.storyboard */,
 				A5AEB4B8246AF09000E1F681 /* Info.plist */,
-				A5AEB4D0246B256500E1F681 /* ScandyCoreLicense.txt */,
+				3F1D118C24B42983005040DA /* ScandyCoreLicense.txt */,
 			);
 			path = RouxSwiftHelloWorld;
 			sourceTree = "<group>";
@@ -287,8 +287,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2BAD0352472FDF20040BF86 /* ScandyCoreLicense.txt in Resources */,
 				A5AEB4B7246AF09000E1F681 /* LaunchScreen.storyboard in Resources */,
+				3F1D118D24B42984005040DA /* ScandyCoreLicense.txt in Resources */,
 				A5AEB4B4246AF09000E1F681 /* Assets.xcassets in Resources */,
 				A5AEB4B2246AF08E00E1F681 /* Main.storyboard in Resources */,
 			);
@@ -535,7 +535,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B5Y5BFV894;
+				DEVELOPMENT_TEAM = V8LMMQTRVV;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Frameworks";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -565,7 +565,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B5Y5BFV894;
+				DEVELOPMENT_TEAM = V8LMMQTRVV;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Frameworks";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Frameworks/ScandyCore.framework/Headers/include/";
 				INFOPLIST_FILE = RouxSwiftHelloWorld/Info.plist;

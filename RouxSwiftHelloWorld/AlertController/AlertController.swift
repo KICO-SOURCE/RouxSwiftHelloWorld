@@ -57,19 +57,6 @@ class AlertController: UIViewController {
 // MARK:- Custom Methods -
 extension AlertController {
     
-    func convertDictionaryToString(dict: [String: Any]) -> String {
-        var result:String = ""
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions.init(rawValue: 0))
-            
-            if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
-                result = JSONString
-            }
-        } catch {
-            result = ""
-        }
-        return result
-    }
     
     func sendData(data: Data, type: String) {
         
@@ -92,16 +79,7 @@ extension AlertController {
         }*/
     }
 
-    func convertStringToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: String.Encoding.utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: [JSONSerialization.ReadingOptions.init(rawValue: 0)]) as? [String: Any]
-            } catch let error as NSError {
-                print(error)
-            }
-        }
-        return nil
-    }
+  
 }
 
 // MARK:- Action Methods -
@@ -122,11 +100,8 @@ extension AlertController {
                 if let fileURL = self.fileURL {
                     do {
                         let data = try Data(contentsOf: fileURL)
-                        let data_Base64str = data.base64EncodedString()
-                        self.imageDict["stl"] = data_Base64str
-                        self.test7str = self.convertDictionaryToString(dict: self.imageDict as [String: Any])
-                        self.test7data = self.test7str.data(using: String.Encoding.utf8)
-                        self.sendData(data: self.test7data, type: "stl")
+                        
+                        self.sendData(data: data, type: "stl")
                     } catch {
                         print("No Data Found")
                     }
