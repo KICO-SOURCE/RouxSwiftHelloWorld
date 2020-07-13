@@ -14,6 +14,8 @@ class ViewController: GLKViewController {
     var SCAN_MODE_V2 = true
     
     // MARK: Properties
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var flashScanButton: UIButton!
     @IBOutlet weak var stopScanButton: UIButton!
     @IBOutlet weak var startScanButton: UIButton!
     @IBOutlet weak var saveMeshButton: UIButton!
@@ -25,6 +27,13 @@ class ViewController: GLKViewController {
     @IBOutlet weak var v2ModeLabel: UILabel!
     
     var fileURL: URL? = nil
+    var socket: GCDAsyncSocket?
+    var mData: NSMutableData!
+    var imageDict: [String: Any] = [:]
+    var test7str: String!
+    var test7data: Data!
+    var dataLength: UInt = 0
+    var totalDataLength: UInt = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +50,26 @@ class ViewController: GLKViewController {
 // MARK: Action Methods -
 extension ViewController {
     
+    @IBAction func settingButtonPressed(_ sender: Any) {
+        print("settings button pressed")
+     
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let alertController = storyboard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
+        alertController.providesPresentationContextTransitionStyle = true
+        alertController.definesPresentationContext = true
+        alertController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        alertController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func flashScanningPressed(_ sender: Any) {
+        print("start scanning pressed")
+        self.startScanning(isFlashScan: true)
+    }
+    
     @IBAction func startScanningPressed(_ sender: Any) {
         print("start scanning pressed")
-        self.startScanning()
+        self.startScanning(isFlashScan: false)
     }
     
     @IBAction func scanSizeChanged(_ sender: Any) {
@@ -52,14 +78,7 @@ extension ViewController {
     
     @IBAction func sendMeshButtonPressed(_ sender: UIButton) {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let alertController = storyboard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
-        alertController.fileURL = self.fileURL
-        alertController.providesPresentationContextTransitionStyle = true
-        alertController.definesPresentationContext = true
-        alertController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        alertController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        self.present(alertController, animated: true, completion: nil)
+        
     }
     
     @IBAction func toggleV2(_ sender: Any) {
@@ -71,7 +90,7 @@ extension ViewController {
         ScandyCore.startPreview()
     }
     
-    @IBAction func stopScanningPressed(_ sender: Any) {
+    @IBAction func stopScanningPressed(_ sender: UIButton) {
         print("stop scanning pressed")
         self.stopScanning()
         ScandyCore.generateMesh()
@@ -92,14 +111,12 @@ extension ViewController {
         print("saving file to \(filepath)")
         self.fileURL = fileURL.absoluteURL
         print("URL \(String(describing: self.fileURL))")
-        let alertController = UIAlertController(title: "Mesh Saved", message:
-            "file saved to \(filepath)", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
         ScandyCore.saveMesh(filepath)
-        self.present(alertController, animated: true, completion: {
-            self.saveMeshButton.isHidden = true
-            self.sendMeshButton.isHidden = false
-        })
+        self.saveMeshButton.isHidden = true
+        self.sendMeshButton.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            self.sendData()
+        }
     }
     
     @IBAction func startPreviewPressed(_ sender: Any) {
@@ -156,9 +173,15 @@ extension ViewController {
         }
     }
     
-    func startScanning() {
-        self.renderScanningScreen()
+    func startScanning(isFlashScan: Bool) {
+        self.renderScanningScreen(isFlashScan: isFlashScan)
         ScandyCore.startScanning()
+        
+        if isFlashScan {
+            DispatchQueue.main.asyncAfter(deadline: .now()+1.5) {
+                self.stopScanningPressed(self.stopScanButton)
+            }
+        }
     }
     
     func stopScanning() {
@@ -178,9 +201,10 @@ extension ViewController {
         self.saveMeshButton.isHidden = true
     }
     
-    func renderScanningScreen() {
+    func renderScanningScreen(isFlashScan: Bool) {
         // Render our buttons
-        self.stopScanButton.isHidden = false
+        self.stopScanButton.isHidden = isFlashScan
+        self.flashScanButton.isHidden = true
         self.startScanButton.isHidden = true
         self.scanSizeLabel.isHidden = true
         self.scanSizeSlider.isHidden = true
@@ -198,5 +222,52 @@ extension ViewController {
         self.stopScanButton.isHidden = true
         self.v2ModeSwitch.isHidden = true
         self.v2ModeLabel.isHidden = true
+    }
+    
+    func sendData() {
+        
+        let ipInfo = PrefsManager.getIPInformation()
+        self.socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
+        do {
+            try self.socket?.connect(toHost: ipInfo.ipAddress, onPort: UInt16(ipInfo.port)!)
+            print("connect success")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
+                if let fileURL = self.fileURL {
+                    do {
+                        let data = try Data(contentsOf: fileURL)
+                        self.totalDataLength = UInt(data.count)
+                        print(self.totalDataLength)
+                        self.socket?.write(data, withTimeout: -1, tag: 0)
+                    } catch {
+                        print("No Data Found")
+                    }
+                }
+            }
+        } catch _ {
+            print("connect fail")
+        }
+    }
+}
+
+// MARK:- GCDAsyncSocketDelegate -
+extension ViewController: GCDAsyncSocketDelegate {
+    
+    
+    func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+        print("conect to " + host)
+        self.socket?.readData(withTimeout: -1, tag: 0)
+    }
+    
+    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
+        let msg = String(data: data as Data, encoding: String.Encoding.utf8)
+        print(msg!)
+        self.socket?.readData(withTimeout: -1, tag: 0)
+    }
+    
+    func socket(_ sock: GCDAsyncSocket, didWritePartialDataOfLength partialLength: UInt, tag: Int) {
+        
+        self.dataLength += partialLength
+        print(dataLength)
     }
 }

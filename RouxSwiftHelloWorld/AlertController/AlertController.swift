@@ -12,15 +12,7 @@ class AlertController: UIViewController {
 
     @IBOutlet weak var ipTextField: UITextField!
     @IBOutlet weak var portTextField: UITextField!
-    @IBOutlet weak var sendButton: UIButton!
-    
-    var socket: GCDAsyncSocket?
-    var mData: NSMutableData!
-    var imageDict: [String: Any] = [:]
-    var test7str: String!
-    var test7data: Data!
-
-    var fileURL: URL? = nil
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +33,6 @@ class AlertController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.socket?.disconnect()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,34 +45,6 @@ class AlertController: UIViewController {
     }
 }
 
-// MARK:- Custom Methods -
-extension AlertController {
-    
-    
-    func sendData(data: Data, type: String) {
-        
-        socket?.write(data, withTimeout: -1, tag: 0)
-        /*
-        let size = data.count
-        var headDict: [String: Any] = [:]
-        headDict["size"] = size
-        headDict["type"] = type
-        let jsonStr = convertDictionaryToString(dict: headDict as [String: AnyObject])
-        if let lengthData = jsonStr.data(using: String.Encoding.utf8) {
-            
-            mData = NSMutableData.init(data: lengthData)
-            mData.append(GCDAsyncSocket.crlfData())
-            mData.append(data)
-            
-            print("mData.length \(mData.length)")
-            print("Data.length \(data.count)")
-            socket?.write(mData as Data, withTimeout: -1, tag: 0)
-        }*/
-    }
-
-  
-}
-
 // MARK:- Action Methods -
 extension AlertController {
     
@@ -89,26 +52,22 @@ extension AlertController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func sendButtonPressed(_ sender: UIButton) {
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
 
-        self.socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
-        do {
-            try self.socket?.connect(toHost: self.ipTextField.text!, onPort: UInt16(self.portTextField.text!)!)
-            print("connect success")
-            
-            DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
-                if let fileURL = self.fileURL {
-                    do {
-                        let data = try Data(contentsOf: fileURL)
-                        
-                        self.sendData(data: data, type: "stl")
-                    } catch {
-                        print("No Data Found")
-                    }
-                }
+        if let ipAddress = self.ipTextField.text, let port = self.portTextField.text {
+            let ipInfo = IPModel(ipAddress: ipAddress, port: port)
+            PrefsManager.setIPInformation(model: ipInfo)
+            let alertController = UIAlertController(title: "RouxSwift", message:
+                "Saved settings successfully", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alertController, animated: true) {
+                self.dismiss(animated: true, completion: nil)
             }
-        } catch _ {
-            print("connect fail")
+        } else {
+            let alertController = UIAlertController(title: "RouxSwift", message:
+                "Please enter IP address and Port number", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }
@@ -121,20 +80,5 @@ extension AlertController: UITextFieldDelegate {
         self.ipTextField.resignFirstResponder()
         self.portTextField.resignFirstResponder()
         return true
-    }
-}
-
-// MARK:- GCDAsyncSocketDelegate -
-extension AlertController: GCDAsyncSocketDelegate {
-    
-    func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
-        print("conect to " + host)
-        self.socket?.readData(withTimeout: -1, tag: 0)
-    }
-    
-    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let msg = String(data: data as Data, encoding: String.Encoding.utf8)
-        print(msg!)
-        self.socket?.readData(withTimeout: -1, tag: 0)
     }
 }

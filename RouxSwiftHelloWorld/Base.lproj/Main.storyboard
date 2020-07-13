@@ -16,22 +16,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable unbounded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8s-L8-VOI" userLabel="V2 Mode Label">
-                                <rect key="frame" x="258.5" y="64" width="143.5" height="20.5"/>
+                                <rect key="frame" x="12" y="56" width="143.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZVM-CO-6oK" userLabel="V2 Mode Switch">
-                                <rect key="frame" x="306" y="96.5" width="51" height="31"/>
+                                <rect key="frame" x="59.5" y="88.5" width="51" height="31"/>
                                 <connections>
                                     <action selector="toggleV2:" destination="BYZ-38-t0r" eventType="valueChanged" id="WuV-qj-O35"/>
                                 </connections>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ad1-xe-UW6">
+                                <rect key="frame" x="372" y="56" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Cpf-vL-67C"/>
+                                    <constraint firstAttribute="height" constant="30" id="szj-wl-c9E"/>
+                                </constraints>
+                                <state key="normal" image="ic_settings"/>
+                                <connections>
+                                    <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="402-8H-Bpr"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7aS-qg-U1W">
-                                <rect key="frame" x="107" y="663" width="200" height="88"/>
+                                <rect key="frame" x="107" y="615" width="200" height="136"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f10-fp-syk" userLabel="Start Scan Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvI-PG-alX" userLabel="Flash">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Aya-Ld-bfK"/>
+                                            <constraint firstAttribute="height" constant="40" id="VJv-UA-Yxy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Flash"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="flashScanningPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CRJ-AI-E6A"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f10-fp-syk" userLabel="Start Scan Button">
+                                        <rect key="frame" x="0.0" y="48" width="200" height="40"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="aXC-fa-7KY"/>
@@ -50,7 +80,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTi-wg-3YC" userLabel="Stop Scan Button">
-                                        <rect key="frame" x="0.0" y="48" width="200" height="40"/>
+                                        <rect key="frame" x="0.0" y="96" width="200" height="40"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Uzh-jQ-23r"/>
@@ -145,14 +175,16 @@
                             </slider>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="P8s-L8-VOI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="0hi-lv-lvd"/>
+                            <constraint firstItem="P8s-L8-VOI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="0hi-lv-lvd"/>
                             <constraint firstItem="ZVM-CO-6oK" firstAttribute="centerX" secondItem="P8s-L8-VOI" secondAttribute="centerX" id="1JB-nR-AQy"/>
                             <constraint firstItem="pnn-vj-fZe" firstAttribute="top" secondItem="BtO-WT-Fs9" secondAttribute="bottom" constant="8" id="30t-t0-7iW"/>
+                            <constraint firstItem="P8s-L8-VOI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="4hD-8c-17l"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ad1-xe-UW6" secondAttribute="trailing" constant="12" id="5SV-fw-7xO"/>
                             <constraint firstItem="BtO-WT-Fs9" firstAttribute="top" secondItem="HNk-NI-AXB" secondAttribute="bottom" constant="12" id="EWT-hl-wWP"/>
+                            <constraint firstItem="ad1-xe-UW6" firstAttribute="top" secondItem="P8s-L8-VOI" secondAttribute="top" id="ISL-wx-OrL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pnn-vj-fZe" secondAttribute="trailing" constant="20" id="LP4-oM-60P"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pnn-vj-fZe" secondAttribute="bottom" constant="20" id="Mea-hp-Wig"/>
                             <constraint firstItem="HNk-NI-AXB" firstAttribute="centerX" secondItem="BtO-WT-Fs9" secondAttribute="centerX" id="SdE-d0-2xp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="P8s-L8-VOI" secondAttribute="trailing" constant="12" id="bPa-fa-KYl"/>
                             <constraint firstItem="pnn-vj-fZe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gPz-nq-brV"/>
                             <constraint firstItem="ZVM-CO-6oK" firstAttribute="top" secondItem="P8s-L8-VOI" secondAttribute="bottom" constant="12" id="hWO-Zl-ecA"/>
                             <constraint firstItem="7aS-qg-U1W" firstAttribute="centerX" secondItem="HNk-NI-AXB" secondAttribute="centerX" id="iZm-mK-NaN"/>
@@ -162,10 +194,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="flashScanButton" destination="MvI-PG-alX" id="AtK-IY-cKq"/>
                         <outlet property="saveMeshButton" destination="QdH-eP-lqJ" id="uWt-WC-Go9"/>
                         <outlet property="scanSizeLabel" destination="BtO-WT-Fs9" id="f4Y-AV-ZgY"/>
                         <outlet property="scanSizeSlider" destination="pnn-vj-fZe" id="JZc-ac-OWm"/>
                         <outlet property="sendMeshButton" destination="YcA-Lq-Dxg" id="yC7-ZK-bz7"/>
+                        <outlet property="settingsButton" destination="ad1-xe-UW6" id="iHm-us-IvZ"/>
                         <outlet property="startPreviewButton" destination="jwE-TC-rGK" id="0Do-Y2-yqJ"/>
                         <outlet property="startScanButton" destination="f10-fp-syk" id="j0m-MP-tNJ"/>
                         <outlet property="stopScanButton" destination="YTi-wg-3YC" id="h4q-X9-nt1"/>
@@ -217,7 +251,7 @@
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="192.168.2.15" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfc-CZ-Hdf">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="192.168.10.122" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfc-CZ-Hdf">
                                                         <rect key="frame" x="0.0" y="27.5" width="294" height="45"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="lPl-sE-DwC"/>
@@ -239,7 +273,7 @@
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="8080" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e5P-6r-oxc">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="6550" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e5P-6r-oxc">
                                                         <rect key="frame" x="0.0" y="27.5" width="294" height="45"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="LCu-0R-KqA"/>
@@ -260,7 +294,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Z8b-gi-VTF"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                                <state key="normal" title="Send"/>
+                                                <state key="normal" title="Save"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -268,7 +302,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="sendButtonPressed:" destination="lWY-yg-54q" eventType="touchUpInside" id="Yni-fM-giG"/>
+                                                    <action selector="saveButtonPressed:" destination="lWY-yg-54q" eventType="touchUpInside" id="xgl-Pt-FJc"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -305,7 +339,7 @@
                     <connections>
                         <outlet property="ipTextField" destination="jfc-CZ-Hdf" id="3Yb-a2-GVc"/>
                         <outlet property="portTextField" destination="e5P-6r-oxc" id="eQV-AQ-E0D"/>
-                        <outlet property="sendButton" destination="V4I-JY-oIB" id="p9y-iw-JiX"/>
+                        <outlet property="saveButton" destination="V4I-JY-oIB" id="s1a-Qr-3G5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uwd-t1-hBr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -315,5 +349,6 @@
     </scenes>
     <resources>
         <image name="arrowshape.turn.up.left" catalog="system" width="128" height="106"/>
+        <image name="ic_settings" width="32" height="32"/>
     </resources>
 </document>
