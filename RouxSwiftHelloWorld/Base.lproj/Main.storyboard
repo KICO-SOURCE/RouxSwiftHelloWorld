@@ -167,12 +167,16 @@
                                 <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="pnn-vj-fZe" userLabel="Scan Size Slider">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="pnn-vj-fZe" userLabel="Scan Size Slider">
                                 <rect key="frame" x="18" y="812" width="378" height="31"/>
                                 <connections>
                                     <action selector="scanSizeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="QBD-ro-p4v"/>
                                 </connections>
                             </slider>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ctw-jb-dsP">
+                                <rect key="frame" x="20" y="840" width="374" height="2"/>
+                                <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </progressView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="P8s-L8-VOI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="0hi-lv-lvd"/>
@@ -180,6 +184,9 @@
                             <constraint firstItem="pnn-vj-fZe" firstAttribute="top" secondItem="BtO-WT-Fs9" secondAttribute="bottom" constant="8" id="30t-t0-7iW"/>
                             <constraint firstItem="P8s-L8-VOI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="4hD-8c-17l"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ad1-xe-UW6" secondAttribute="trailing" constant="12" id="5SV-fw-7xO"/>
+                            <constraint firstItem="ctw-jb-dsP" firstAttribute="trailing" secondItem="pnn-vj-fZe" secondAttribute="trailing" id="5pE-Yb-Ffp"/>
+                            <constraint firstItem="ctw-jb-dsP" firstAttribute="leading" secondItem="pnn-vj-fZe" secondAttribute="leading" id="5qA-OU-rfu"/>
+                            <constraint firstItem="ctw-jb-dsP" firstAttribute="bottom" secondItem="pnn-vj-fZe" secondAttribute="bottom" id="Abm-V7-obG"/>
                             <constraint firstItem="BtO-WT-Fs9" firstAttribute="top" secondItem="HNk-NI-AXB" secondAttribute="bottom" constant="12" id="EWT-hl-wWP"/>
                             <constraint firstItem="ad1-xe-UW6" firstAttribute="top" secondItem="P8s-L8-VOI" secondAttribute="top" id="ISL-wx-OrL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pnn-vj-fZe" secondAttribute="trailing" constant="20" id="LP4-oM-60P"/>
@@ -195,6 +202,7 @@
                     </view>
                     <connections>
                         <outlet property="flashScanButton" destination="MvI-PG-alX" id="AtK-IY-cKq"/>
+                        <outlet property="progressView" destination="ctw-jb-dsP" id="3W8-Be-IzI"/>
                         <outlet property="saveMeshButton" destination="QdH-eP-lqJ" id="uWt-WC-Go9"/>
                         <outlet property="scanSizeLabel" destination="BtO-WT-Fs9" id="f4Y-AV-ZgY"/>
                         <outlet property="scanSizeSlider" destination="pnn-vj-fZe" id="JZc-ac-OWm"/>

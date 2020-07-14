@@ -20,6 +20,10 @@ class AlertController: UIViewController {
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         self.ipTextField.delegate = self
         self.portTextField.delegate = self
+        
+        let ipInfo = PrefsManager.getIPInformation()
+        self.ipTextField.text = ipInfo.ipAddress
+        self.portTextField.text = ipInfo.port
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -59,7 +63,6 @@ extension AlertController {
             PrefsManager.setIPInformation(model: ipInfo)
             let alertController = UIAlertController(title: "RouxSwift", message:
                 "Saved settings successfully", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alertController, animated: true) {
                 self.dismiss(animated: true, completion: nil)
             }

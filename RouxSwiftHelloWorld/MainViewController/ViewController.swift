@@ -25,6 +25,7 @@ class ViewController: GLKViewController {
     @IBOutlet weak var scanSizeSlider: UISlider!
     @IBOutlet weak var v2ModeSwitch: UISwitch!
     @IBOutlet weak var v2ModeLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
     
     var fileURL: URL? = nil
     var socket: GCDAsyncSocket?
@@ -52,7 +53,7 @@ extension ViewController {
     
     @IBAction func settingButtonPressed(_ sender: Any) {
         print("settings button pressed")
-     
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let alertController = storyboard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
         alertController.providesPresentationContextTransitionStyle = true
@@ -113,7 +114,7 @@ extension ViewController {
         print("URL \(String(describing: self.fileURL))")
         ScandyCore.saveMesh(filepath)
         self.saveMeshButton.isHidden = true
-        self.sendMeshButton.isHidden = false
+        self.sendMeshButton.isHidden = true
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
             self.sendData()
         }
@@ -137,7 +138,7 @@ extension ViewController {
         }
         return false
     }
-
+    
     func turnOnScanner() {
         self.renderPreviewScreen()
         
@@ -190,6 +191,7 @@ extension ViewController {
     }
     
     func renderPreviewScreen() {
+        self.flashScanButton.isHidden = false
         self.scanSizeLabel.isHidden = false
         self.scanSizeSlider.isHidden = false
         self.v2ModeSwitch.isHidden = false
@@ -238,7 +240,9 @@ extension ViewController {
                         let data = try Data(contentsOf: fileURL)
                         self.totalDataLength = UInt(data.count)
                         print(self.totalDataLength)
+                        self.progressView.isHidden = false
                         self.socket?.write(data, withTimeout: -1, tag: 0)
+                        self.socket?.disconnectAfterWriting()
                     } catch {
                         print("No Data Found")
                     }
@@ -259,6 +263,17 @@ extension ViewController: GCDAsyncSocketDelegate {
         self.socket?.readData(withTimeout: -1, tag: 0)
     }
     
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        if err == nil {
+            let alertController = UIAlertController(title: "RouxSwift", message:
+                "Data sent successfully", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                self.progressView.isHidden = true
+            }))
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let msg = String(data: data as Data, encoding: String.Encoding.utf8)
         print(msg!)
@@ -268,6 +283,10 @@ extension ViewController: GCDAsyncSocketDelegate {
     func socket(_ sock: GCDAsyncSocket, didWritePartialDataOfLength partialLength: UInt, tag: Int) {
         
         self.dataLength += partialLength
-        print(dataLength)
+        DispatchQueue.main.async {
+            if self.progressView.progress != 1.0 {
+                self.progressView.progress = Float(Double(self.dataLength)/Double(self.totalDataLength))
+            }
+        }
     }
 }
